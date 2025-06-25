@@ -95,9 +95,20 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="collision" type="CollisionShape2D" parent="hurtbox"]
+visible = false
 position = Vector2(1.5, -12.5)
 shape = SubResource("RectangleShape2D_esgq3")
 
 [node name="remote" type="RemoteTransform2D" parent="."]
+
+[node name="ray_right" type="RayCast2D" parent="."]
+position = Vector2(8, -8)
+target_position = Vector2(4, 0)
+collision_mask = 4
+
+[node name="ray_left" type="RayCast2D" parent="."]
+position = Vector2(-5, -8)
+target_position = Vector2(-4, 0)
+collision_mask = 4
 
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

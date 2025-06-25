@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://djh01ptl1oj0r"]
+[gd_scene load_steps=28 format=4 uid="uid://djh01ptl1oj0r"]
 
 [ext_resource type="Script" uid="uid://dnhiokqcugmiv" path="res://scripts/world_01.gd" id="1_0sqnv"]
 [ext_resource type="Texture2D" uid="uid://bfa0phe8chb4n" path="res://assets/Seasonal Tilesets/1 - Grassland/Terrain (16 x 16).png" id="1_c3k7x"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://drr0ypxmxx8w6" path="res://actors/enemy.tscn" id="11_0sqnv"]
 [ext_resource type="PackedScene" uid="uid://n7e8nxy1kkfy" path="res://prefabs/enemy_spawner.tscn" id="12_s8drv"]
 [ext_resource type="Texture2D" uid="uid://bkxutms0s4gff" path="res://assets/Health Bar v2.png" id="13_loduy"]
+[ext_resource type="Script" uid="uid://c2platmyao2jx" path="res://scripts/lifes.gd" id="13_n43yw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1qi1b"]
 texture = ExtResource("1_c3k7x")
@@ -74,75 +75,75 @@ sources/0 = SubResource("TileSetAtlasSource_1qi1b")
 shader = ExtResource("6_8rwgp")
 shader_parameter/move_speed = 0.1
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ua707"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n43yw"]
 atlas = ExtResource("13_loduy")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rkwqa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8kgd"]
 atlas = ExtResource("13_loduy")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_41w2c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kioyb"]
 atlas = ExtResource("13_loduy")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5nkr1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt3se"]
 atlas = ExtResource("13_loduy")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_31m4k"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vmtb"]
 atlas = ExtResource("13_loduy")
 region = Rect2(256, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_opp7g"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ub3r"]
 atlas = ExtResource("13_loduy")
 region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jglmw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_le3as"]
 atlas = ExtResource("13_loduy")
 region = Rect2(384, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bncfn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_j05k8"]
 atlas = ExtResource("13_loduy")
 region = Rect2(448, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_77ki2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxnn7"]
 atlas = ExtResource("13_loduy")
 region = Rect2(512, 0, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_loduy"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_kgrbs"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ua707")
+"texture": SubResource("AtlasTexture_n43yw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rkwqa")
+"texture": SubResource("AtlasTexture_m8kgd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_41w2c")
+"texture": SubResource("AtlasTexture_kioyb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5nkr1")
+"texture": SubResource("AtlasTexture_lt3se")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_31m4k")
+"texture": SubResource("AtlasTexture_3vmtb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_opp7g")
+"texture": SubResource("AtlasTexture_4ub3r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jglmw")
+"texture": SubResource("AtlasTexture_le3as")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bncfn")
+"texture": SubResource("AtlasTexture_j05k8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_77ki2")
+"texture": SubResource("AtlasTexture_uxnn7")
 }],
 "loop": true,
-"name": &"lifes",
-"speed": 2.0
+"name": &"life",
+"speed": 3.0
 }]
 
 [node name="World-01" type="Node2D"]
@@ -237,14 +238,17 @@ editor_draw_limits = true
 position = Vector2(159, 248)
 enemy_scene = ExtResource("11_0sqnv")
 
-[node name="Label" type="Label" parent="EnemySpawner"]
-offset_left = 76.0
-offset_top = -42.0
-offset_right = 113.0
-offset_bottom = -19.0
+[node name="layer_fixed" type="CanvasLayer" parent="."]
 
-[node name="life_bar" type="AnimatedSprite2D" parent="."]
-position = Vector2(44.625, 188.625)
-scale = Vector2(0.855469, 0.855469)
-sprite_frames = SubResource("SpriteFrames_loduy")
-animation = &"lifes"
+[node name="lifes" type="Label" parent="layer_fixed"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("13_n43yw")
+
+[node name="barr" type="AnimatedSprite2D" parent="layer_fixed"]
+position = Vector2(34, 181)
+scale = Vector2(0.625, 0.625)
+sprite_frames = SubResource("SpriteFrames_kgrbs")
+animation = &"life"
+autoplay = "life"
+frame_progress = 0.995199
