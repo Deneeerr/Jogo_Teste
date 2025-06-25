@@ -234,14 +234,14 @@ drag_right_margin = 0.5
 editor_draw_limits = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("12_s8drv")]
-position = Vector2(159, 248)
+position = Vector2(209, 247)
 enemy_scene = ExtResource("11_0sqnv")
 
 [node name="Label" type="Label" parent="EnemySpawner"]
-offset_left = 76.0
-offset_top = -42.0
-offset_right = 113.0
-offset_bottom = -19.0
+offset_left = 28.0
+offset_top = -44.0
+offset_right = 65.0
+offset_bottom = -21.0
 
 [node name="life_bar" type="AnimatedSprite2D" parent="."]
 position = Vector2(44.625, 188.625)
